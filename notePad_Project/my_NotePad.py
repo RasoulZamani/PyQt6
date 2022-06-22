@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import (QApplication, QMainWindow,
-                            QLabel)
+                            QLabel, QTextEdit, QVBoxLayout)
 from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtCore import Qt
 import sys
@@ -16,43 +16,69 @@ class Window(QMainWindow):
         self._createActions()
         self._createMenuBar()
 
-        self.centralWidget = QLabel("Hello, World")
-
+        self.centralWidget = QLabel("*****  In His High Name  *****")
+        self.text_edit = QTextEdit()
+        vbox = QVBoxLayout()
+        vbox.addWidget(self.centralWidget)
+        vbox.addWidget(self.text_edit)
+        #self.setLayout(vbox)
     def _createActions(self):
         # Creating action using the first constructor
         self.newAction = QAction(self)
         self.newAction.setText("&New")
         self.newAction.setShortcut("Ctrl+N")
+        self.newAction.setIcon(QIcon("icon_images/new.png"))
         # Creating actions using the second constructor
         self.openAction = QAction("&Open...", self)
         self.openAction.setShortcut("Ctrl+O")
+        self.openAction.setIcon(QIcon("icon_images/open.png"))
         self.saveAction = QAction("&Save", self)
         self.saveAction.setShortcut("Ctrl+S")
+        self.saveAction.setIcon(QIcon("icon_images/save.png"))
         self.printAction = QAction("&Print", self)
         self.printAction.setShortcut("Ctrl+P")
+        self.printAction.setIcon(QIcon("icon_images/print.png"))
         self.exportAction = QAction("&Export", self)
+        self.exportAction.setShortcut("Ctrl+E")
+        self.exportAction.setIcon(QIcon("icon_images/pdf.png"))
         self.quitAction = QAction("&Quit", self)
         self.quitAction.setShortcut("Ctrl+Q")
-
+        self.quitAction.setIcon(QIcon("icon_images/exit.png"))
 
         self.undoAction = QAction("&Undo", self)
-        self.reduAction = QAction("&Redu", self)
+        self.undoAction.setIcon(QIcon("icon_images/undo.png"))
+        self.redoAction = QAction("&Redo", self)
+        self.redoAction.setIcon(QIcon("icon_images/redo.png"))
         self.cutAction = QAction("&Cut", self)
+        self.cutAction.setIcon(QIcon("icon_images/cut.png"))
         self.copyAction = QAction("&Copy", self)
+        self.copyAction.setIcon(QIcon("icon_images/copy.png"))
         self.pasteAction = QAction("&Paste", self)
+        self.pasteAction.setIcon(QIcon("icon_images/paste.png"))
 
         self.boldAction = QAction("&Bold", self)
+        self.boldAction.setIcon(QIcon("icon_images/bold.png"))
         self.italicAction = QAction("&Italic", self)
+        self.italicAction.setIcon(QIcon("icon_images/italic.png"))
         self.underlineAction = QAction("&Undeline", self)
+        self.underlineAction.setIcon(QIcon("icon_images/underline.png"))
         self.leftAction = QAction("&Left", self)
+        self.leftAction.setIcon(QIcon("icon_images/left.png"))
         self.rightAction = QAction("&Right", self)
+        self.rightAction.setIcon(QIcon("icon_images/right.png"))
         self.centerAction = QAction("&Center", self)
+        self.centerAction.setIcon(QIcon("icon_images/center.png"))
         self.justifyAction = QAction("&Justify", self)
+        self.justifyAction.setIcon(QIcon("icon_images/justify.png"))
         self.fontAction = QAction("&Font", self)
+        self.fontAction.setIcon(QIcon("icon_images/font.png"))
         self.colorAction = QAction("&Color", self)
+        self.colorAction.setIcon(QIcon("icon_images/color.png"))
 
         self.helpAction = QAction("&Help", self)
+        self.helpAction.setIcon(QIcon("icon_images/about.png"))
         self.aboutAction = QAction("&About", self)
+        self.aboutAction.setIcon(QIcon("icon_images/aboutqt.png"))
 
     def _createMenuBar(self):
         menuBar = self.menuBar()
@@ -69,7 +95,7 @@ class Window(QMainWindow):
 
         editMenu = menuBar.addMenu("&Edit")
         editMenu.addAction(self.undoAction)
-        editMenu.addAction(self.reduAction)
+        editMenu.addAction(self.redoAction)
         editMenu.addSeparator()
         editMenu.addAction(self.cutAction)
         editMenu.addAction(self.copyAction)
