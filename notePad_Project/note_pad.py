@@ -14,6 +14,7 @@ class Window(Design):
 
         self.saveAction.triggered.connect(self.save_file)
         self.newAction.triggered.connect(self.new_file)
+        self.openAction.triggered.connect(self.open_file)
 
 
 # check save or discart:________________________________________________________
@@ -49,6 +50,15 @@ class Window(Design):
         if self.save_or_not():
             self.textEdit.clear()
 
+# open file ____________________________________________________________________
+    def open_file(self):
+        if self.save_or_not():
+            file_name = QFileDialog.getOpenFileName(self,"Open File", "")
+            if file_name[0]:
+                f = open(file_name, 'r')
+                with f:
+                    doc = f.read()
+                    self.textEdit.setText(data)
 
 
 if __name__ == "__main__": #____________________________________________________
