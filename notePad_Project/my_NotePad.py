@@ -1,5 +1,16 @@
+""" ************ In His High Name ************
+ In this project we create simple (but still
+awsome!) node pat in PyQt6
+
+           By Rasoul Zamani
+                1401/04
+
+        you can use it for free!
+"""
+
 from PyQt6.QtWidgets import (QApplication, QMainWindow,
-                            QLabel, QTextEdit, QVBoxLayout)
+                             QLabel, QTextEdit, QVBoxLayout,
+                             QToolBar)
 from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtCore import Qt
 import sys
@@ -15,10 +26,12 @@ class Window(QMainWindow):
 
         self._createActions()
         self._createMenuBar()
+        self._create_toolbar()
 
         self.text_edit = QTextEdit()
         self.setCentralWidget(self.text_edit)
 
+# actions ______________________________________________________________________
     def _createActions(self):
         # Creating action using the first constructor
         self.newAction = QAction(self)
@@ -77,6 +90,7 @@ class Window(QMainWindow):
         self.aboutAction = QAction("&About", self)
         self.aboutAction.setIcon(QIcon("icon_images/aboutqt.png"))
 
+# menu bar _____________________________________________________________________
     def _createMenuBar(self):
         menuBar = self.menuBar()
 
@@ -115,7 +129,21 @@ class Window(QMainWindow):
         helpMenu.addAction(self.helpAction)
         helpMenu.addAction(self.aboutAction)
 
-if __name__ == "__main__":
+# toolbar ______________________________________________________________________
+    def _create_toolbar(self):
+        toolbar = QToolBar("My main toolbar")
+        toolbar.addAction(self.newAction)
+        toolbar.addAction(self.openAction)
+        toolbar.addAction(self.saveAction)
+        toolbar.addAction(self.undoAction)
+        toolbar.addAction(self.redoAction)
+        toolbar.addAction(self.helpAction)
+
+        self.addToolBar(toolbar)
+
+
+
+if __name__ == "__main__": #____________________________________________________
     app = QApplication(sys.argv)
     window = Window()
     window.show()
