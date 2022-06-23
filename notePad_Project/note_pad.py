@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import (QApplication, QMainWindow,
                              QFileDialog, QMessageBox,
                              QLabel, QTextEdit, QVBoxLayout,
                              QToolBar)
-from PyQt6.QtGui import QAction, QIcon
+from PyQt6.QtGui import QAction, QIcon, QFont
 from PyQt6.QtPrintSupport import QPrinter,QPrintDialog, QPrintPreviewDialog
 from PyQt6.QtCore import QFileInfo, Qt
 import sys
@@ -13,6 +13,7 @@ class Window(Design):
     def __init__(self):
         super().__init__()
 
+# signal and slots of File _____________________________________________________
         self.saveAction.triggered.connect(self.save_file)
         self.newAction.triggered.connect(self.new_file)
         self.openAction.triggered.connect(self.open_file)
@@ -21,13 +22,17 @@ class Window(Design):
         self.exportAction.triggered.connect(self.export_pdf)
         self.quitAction.triggered.connect(self.quit_app)
 
+# signals and slots of Edit ____________________________________________________
         self.undoAction.triggered.connect(self.textEdit.undo)
         self.redoAction.triggered.connect(self.textEdit.redo)
         self.cutAction.triggered.connect(self.textEdit.cut)
         self.copyAction.triggered.connect(self.textEdit.copy)
         self.pasteAction.triggered.connect(self.textEdit.paste)
 
-
+# signals and slots of Format __________________________________________________
+        self.boldAction.triggered.connect(self.text_bold)
+        self.italicAction.triggered.connect(self.italic)
+        self.underlineAction.triggered.connect(self.underline)
 
 
 
@@ -103,9 +108,25 @@ class Window(Design):
             printer.setOutputFileName(fn)
             self.textEdit.document().print(printer)
 
-# quit from app
+# quit from app ________________________________________________________________
     def quit_app(self):
         self.close()
+
+# Format methods _______________________________________________________________
+    def text_bold(self):
+        font = QFont()
+        font.setBold(True)
+        self.textEdit.setFont(font)
+
+    def italic(self):
+        font = QFont()
+        font.setItalic(True)
+        self.textEdit.setFont(font)
+
+    def underline(self):
+        font = QFont()
+        font.setUnderline(True)
+        self.textEdit.setFont(font)
 
 
 if __name__ == "__main__": #____________________________________________________
