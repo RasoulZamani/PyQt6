@@ -19,6 +19,8 @@ class Window(Design):
         self.printAction.triggered.connect(self.print_file)
         self.printPreviewAction.triggered.connect(self.preview_dialog)
         self.exportAction.triggered.connect(self.export_pdf)
+        self.quitAction.triggered.connect(self.quit_app)
+
 
 
 
@@ -93,6 +95,10 @@ class Window(Design):
             printer.setOutputFormat(QPrinter.OutputFormat.PdfFormat)
             printer.setOutputFileName(fn)
             self.textEdit.document().print(printer)
+
+# quit from app
+    def quit_app(self):
+        self.close()
 
 
 if __name__ == "__main__": #____________________________________________________

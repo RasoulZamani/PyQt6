@@ -139,6 +139,7 @@ class Window(QMainWindow):
         toolbar.addAction(self.newAction)
         toolbar.addAction(self.openAction)
         toolbar.addAction(self.saveAction)
+        toolbar.addAction(self.exportAction)
         toolbar.addAction(self.undoAction)
         toolbar.addAction(self.redoAction)
         toolbar.addAction(self.helpAction)
