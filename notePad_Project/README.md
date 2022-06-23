@@ -3,5 +3,5 @@ I create design of application in note_pad_desig.py and add functionaliies in no
 for running just run note_pad.py :
 
 ```
-python not
+python note_pad.py
 ```
