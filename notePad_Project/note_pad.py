@@ -3,7 +3,7 @@ from PyQt6.QtWidgets import (QApplication, QMainWindow,
                              QLabel, QTextEdit, QVBoxLayout,
                              QToolBar)
 from PyQt6.QtGui import QAction, QIcon
-from PyQt6.QtPrintSupport import QPrinter,QPrintDialog
+from PyQt6.QtPrintSupport import QPrinter,QPrintDialog, QPrintPreviewDialog
 from PyQt6.QtCore import Qt
 import sys
 from note_pad_design import Window as Design
@@ -17,6 +17,8 @@ class Window(Design):
         self.newAction.triggered.connect(self.new_file)
         self.openAction.triggered.connect(self.open_file)
         self.printAction.triggered.connect(self.print_file)
+        self.printPreviewAction.triggered.connect(self.preview_dialog)
+
 
 
 
@@ -63,6 +65,15 @@ class Window(Design):
                     doc = f.read()
                     self.textEdit.setText(data)
 
+# print preview ________________________________________________________________
+    def preview_dialog(self):
+        printer = QPrinter(QPrinter.PrinterMode.HighResolution)
+        previewDialog = QPrintPreviewDialog(printer, self)
+        previewDialog.paintRequested.connect(self.print_preview)
+        previewDialog.exec()
+
+    def print_preview(self, printer):
+        self.textEdit.print(printer)
 # print file ___________________________________________________________________
     def print_file(self):
         printer = QPrinter(QPrinter.PrinterMode.HighResolution)
