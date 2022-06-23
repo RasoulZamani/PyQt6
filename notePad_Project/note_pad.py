@@ -35,6 +35,12 @@ class Window(Design):
         self.underlineAction.triggered.connect(self.underline)
 
 
+        self.leftAction.triggered.connect(self.align_left)
+        self.centerAction.triggered.connect(self.align_center)
+        self.rightAction.triggered.connect(self.align_right)
+        self.justifyAction.triggered.connect(self.justify)
+
+
 
 
 # check save or discart:________________________________________________________
@@ -128,7 +134,21 @@ class Window(Design):
         font.setUnderline(True)
         self.textEdit.setFont(font)
 
+    def align_left(self):
+        self.textEdit.setAlignment(Qt.AlignmentFlag.AlignLeft)
 
+    def align_center(self):
+        self.textEdit.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+    def align_right(self):
+        self.textEdit.setAlignment(Qt.AlignmentFlag.AlignRight)
+
+    def justify(self):
+        self.textEdit.setAlignment(Qt.AlignmentFlag.AlignJustify)
+
+
+
+#*******************************************************************************
 if __name__ == "__main__": #____________________________________________________
     app = QApplication(sys.argv)
     window = Window()
