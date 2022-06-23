@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import (QApplication, QMainWindow,
                              QLabel, QTextEdit, QVBoxLayout,
                              QToolBar)
 from PyQt6.QtGui import QAction, QIcon
+from PyQt6.QtPrintSupport import QPrinter,QPrintDialog
 from PyQt6.QtCore import Qt
 import sys
 from note_pad_design import Window as Design
@@ -15,6 +16,8 @@ class Window(Design):
         self.saveAction.triggered.connect(self.save_file)
         self.newAction.triggered.connect(self.new_file)
         self.openAction.triggered.connect(self.open_file)
+        self.printAction.triggered.connect(self.print_file)
+
 
 
 # check save or discart:________________________________________________________
@@ -60,6 +63,13 @@ class Window(Design):
                     doc = f.read()
                     self.textEdit.setText(data)
 
+# print file ___________________________________________________________________
+    def print_file(self):
+        printer = QPrinter(QPrinter.PrinterMode.HighResolution)
+        dialog = QPrintDialog(printer)
+
+        if dialog.exec() == QPrintDialog.DialogCode.Accepted:
+            self.textEdit.print(printer)
 
 if __name__ == "__main__": #____________________________________________________
     app = QApplication(sys.argv)
