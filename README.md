@@ -17,3 +17,16 @@ I gather together them in [this folder](pyqt_widgets).
 
 Then I try to create simple node pad as a self defined project. you can see code in
 [this filder](notePad_Project).
+
+for running go to directory contain both codes i.e:
+ [Design]("notePad_Project/note_pad_design.py") and [functionalities]("notePad_Project/note_pad.py")
+manually or by:
+```
+cd notePad_Project
+```
+
+and then run note_pad.py :
+
+```
+python note_pad.py
+```
