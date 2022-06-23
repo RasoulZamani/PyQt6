@@ -4,7 +4,7 @@ from PyQt6.QtWidgets import (QApplication, QMainWindow,
                              QToolBar)
 from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtPrintSupport import QPrinter,QPrintDialog, QPrintPreviewDialog
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import QFileInfo, Qt
 import sys
 from note_pad_design import Window as Design
 
@@ -18,6 +18,7 @@ class Window(Design):
         self.openAction.triggered.connect(self.open_file)
         self.printAction.triggered.connect(self.print_file)
         self.printPreviewAction.triggered.connect(self.preview_dialog)
+        self.exportAction.triggered.connect(self.export_pdf)
 
 
 
@@ -81,6 +82,18 @@ class Window(Design):
 
         if dialog.exec() == QPrintDialog.DialogCode.Accepted:
             self.textEdit.print(printer)
+
+# export pdf ___________________________________________________________________
+    def export_pdf(self):
+        fn, _ = QFileDialog.getSaveFileName(self, 'Export PDF', "")
+
+        if fn != "":
+            if QFileInfo(fn).suffix() == "" : fn += '.pdf'
+            printer = QPrinter(QPrinter.PrinterMode.HighResolution)
+            printer.setOutputFormat(QPrinter.OutputFormat.PdfFormat)
+            printer.setOutputFileName(fn)
+            self.textEdit.document().print(printer)
+
 
 if __name__ == "__main__": #____________________________________________________
     app = QApplication(sys.argv)
