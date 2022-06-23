@@ -21,6 +21,13 @@ class Window(Design):
         self.exportAction.triggered.connect(self.export_pdf)
         self.quitAction.triggered.connect(self.quit_app)
 
+        self.undoAction.triggered.connect(self.textEdit.undo)
+        self.redoAction.triggered.connect(self.textEdit.redo)
+        self.cutAction.triggered.connect(self.textEdit.cut)
+        self.copyAction.triggered.connect(self.textEdit.copy)
+        self.pasteAction.triggered.connect(self.textEdit.paste)
+
+
 
 
 
