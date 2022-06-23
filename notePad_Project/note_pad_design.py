@@ -28,8 +28,8 @@ class Window(QMainWindow):
         self._createMenuBar()
         self._create_toolbar()
 
-        self.text_edit = QTextEdit()
-        self.setCentralWidget(self.text_edit)
+        self.textEdit = QTextEdit()
+        self.setCentralWidget(self.textEdit)
 
 # actions ______________________________________________________________________
     def _createActions(self):
