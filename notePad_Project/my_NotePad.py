@@ -11,17 +11,14 @@ class Window(QMainWindow):
         super().__init__(parent)
         self.setWindowTitle("my Note Pad")
         self.setGeometry(300,300,700,500)
-        self.statusBar().showMessage("wellcome to awsome note pad")
+        self.statusBar().showMessage("wellcome to awsome note pad! type anything you like!its free:)")
 
         self._createActions()
         self._createMenuBar()
 
-        self.centralWidget = QLabel("*****  In His High Name  *****")
         self.text_edit = QTextEdit()
-        vbox = QVBoxLayout()
-        vbox.addWidget(self.centralWidget)
-        vbox.addWidget(self.text_edit)
-        #self.setLayout(vbox)
+        self.setCentralWidget(self.text_edit)
+
     def _createActions(self):
         # Creating action using the first constructor
         self.newAction = QAction(self)
