@@ -1,6 +1,10 @@
 """ ************ In His High Name ************
  In this project we create simple (but still
 awsome!) node pat in PyQt6
+This part (by name: note_pad_design.py) is for
+design part.
+another (main) code for adding functions is
+note_pad.py and will import this part.
 
            By Rasoul Zamani
                 1401/04

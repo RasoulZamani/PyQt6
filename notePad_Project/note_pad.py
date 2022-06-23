@@ -1,7 +1,20 @@
+""" ************ In His High Name ************
+ In this project we create simple (but still
+awsome!) node pat in PyQt6
+
+This part (by name: note_pad.py) is for adding
+functions.
+another code for design is note_pad_design.py
+and we import app design from it.
+
+           By Rasoul Zamani
+                1401/04
+
+        you can use it for free!
+"""
 from PyQt6.QtWidgets import (QApplication, QMainWindow,
                              QFileDialog, QMessageBox,
-                             QLabel, QTextEdit, QVBoxLayout,
-                             QToolBar)
+                             QFontDialog, QColorDialog)
 from PyQt6.QtGui import QAction, QIcon, QFont
 from PyQt6.QtPrintSupport import QPrinter,QPrintDialog, QPrintPreviewDialog
 from PyQt6.QtCore import QFileInfo, Qt
@@ -12,8 +25,9 @@ class Window(Design):
     """Main Window."""
     def __init__(self):
         super().__init__()
+# signals:
 
-# signal and slots of File _____________________________________________________
+# signals of File _____________________________________________________
         self.saveAction.triggered.connect(self.save_file)
         self.newAction.triggered.connect(self.new_file)
         self.openAction.triggered.connect(self.open_file)
@@ -22,14 +36,14 @@ class Window(Design):
         self.exportAction.triggered.connect(self.export_pdf)
         self.quitAction.triggered.connect(self.quit_app)
 
-# signals and slots of Edit ____________________________________________________
+# signals of Edit ____________________________________________________
         self.undoAction.triggered.connect(self.textEdit.undo)
         self.redoAction.triggered.connect(self.textEdit.redo)
         self.cutAction.triggered.connect(self.textEdit.cut)
         self.copyAction.triggered.connect(self.textEdit.copy)
         self.pasteAction.triggered.connect(self.textEdit.paste)
 
-# signals and slots of Format __________________________________________________
+# signals of Format __________________________________________________
         self.boldAction.triggered.connect(self.text_bold)
         self.italicAction.triggered.connect(self.italic)
         self.underlineAction.triggered.connect(self.underline)
@@ -40,8 +54,14 @@ class Window(Design):
         self.rightAction.triggered.connect(self.align_right)
         self.justifyAction.triggered.connect(self.justify)
 
+        self.fontAction.triggered.connect(self.font_dialog)
+        self.colorAction.triggered.connect(self.color_dialog)
 
 
+        self.helpAction.triggered.connect(self.help)
+        self.aboutAction.triggered.connect(self.about)
+
+# Methods (slots) :
 
 # check save or discart:________________________________________________________
     def save_or_not(self):
@@ -147,6 +167,24 @@ class Window(Design):
         self.textEdit.setAlignment(Qt.AlignmentFlag.AlignJustify)
 
 
+    def font_dialog(self):
+        font, ok = QFontDialog.getFont()
+        if ok:
+            self.textEdit.setFont(font)
+
+    def color_dialog(self):
+        color = QColorDialog.getColor()
+        self.textEdit.setTextColor(color)
+
+    def about(self):
+        QMessageBox.about(self,"About App",
+        " \t************ In His High Name ************     "+\
+        "\n In this project we create simple (but still awsome!) node pat in PyQt6"+\
+        "\n\t\t By Rasoul Zamani, 1401/04 \n\n\t you can use it for free!so good for you!" )
+
+    def help(self):
+        QMessageBox.about(self,"About App",
+       " Really???? you need help for usinf nodepad??!! commmee onnnn !!!")
 
 #*******************************************************************************
 if __name__ == "__main__": #____________________________________________________
