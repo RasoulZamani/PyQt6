@@ -21,7 +21,7 @@ I separate design code and functionalities in two file.
 this application has menubar including file,edit,format,help and many actions like save, open, new, print and...
  
 for running go to directory contain both codes i.e:
- [note_pad_design.py]("notePad_Project\note_pad_design.py") and [note_pad.py]("notePad_Project\note_pad.py")
+ [note_pad_design.py](notePad_Project/note_pad_design.py) and [note_pad.py]("notePad_Project/note_pad.py")
 manually or by:
 ```
 cd notePad_Project
